@@ -1,0 +1,24 @@
+test:
+  - src/test/**
+
+workflow:
+  - .github/**
+  - .mergify.yml
+
+documentation:
+  - CHANGELOG.md
+  - LICENSE
+  - README.md
+  - QuickStart.md
+  - SECURITY.md
+  - CONTRIBUTORS.md
+  - CONTRIBUTING.md
+
+dependencies:
+  - pom.xml
+
+automerge:
+  - all: [ 'README.md' ]
+  - all: [ 'CHANGELOG.md' ]
+  - all: [ 'QuickStart.md' ]
+  - all: [ 'CONTRIBUTORS.md' ]

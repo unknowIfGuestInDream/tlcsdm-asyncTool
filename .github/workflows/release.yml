@@ -10,8 +10,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Check out Git repository
-          uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Set up Java for publishing to GitHub Packages
           uses: actions/setup-java@v3
           with:
@@ -21,6 +20,7 @@ jobs:
           run: mvn --batch-mode deploy -DskipTests -Prelease-github
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     runs-on: ubuntu-18.04
     steps:

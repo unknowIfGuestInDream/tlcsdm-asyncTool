@@ -23,7 +23,7 @@ jobs:
         # 这里用到了其他人写的action脚本，详细可以去看他的文档。
         uses: samuelmeuli/action-maven-publish@v1
         with:
-          maven_profiles: 'release-ossrh'
+          maven_profiles: 'sonatype-nexus-snapshots'
           maven_args: '-DskipTests'
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg_passphrase: ${{ secrets.GPG_PASSWORD }}

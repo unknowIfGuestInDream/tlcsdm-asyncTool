@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.tlcsdm</groupId>
     <artifactId>tlcsdm-asyncTool</artifactId>
     <version>1.0.0</version>
+    <name>tlcsdm-asyncTool</name>
     <description>async工具包</description>
     <url>https://github.com/tlcsdm/tlcsdm-asyncTool</url>
     <packaging>jar</packaging>
@@ -20,6 +20,12 @@
         <connection>https://github.com/tlcsdm/tlcsdm-asyncTool.git</connection>
         <url>https://github.com/tlcsdm/tlcsdm-asyncTool</url>
     </scm>
+        <developers>
+        <developer>
+            <name>unknowIfGuestInDream</name>
+            <email>tang97155@gmail.com</email>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
@@ -34,6 +40,7 @@
                 </configuration>
             </plugin>
              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
@@ -49,20 +56,36 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
                 <configuration>
-                    <doclint>none</doclint>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.tlcsdm.async</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-javadoc-plugin</artifactId>
+                   <version>2.9.1</version>
+                   <configuration>
+                       <show>private</show>
+                       <nohelp>true</nohelp>
+                       <charset>UTF-8</charset>
+                       <encoding>UTF-8</encoding>
+                       <docencoding>UTF-8</docencoding>
+                       <additionalparam>-Xdoclint:none</additionalparam>
+                   </configuration>
+                   <executions>
+                       <execution>
+                           <phase>package</phase>
+                           <goals>
+                                <goal>jar</goal>
+                           </goals>
+                       </execution>
+                   </executions>
             </plugin>
         </plugins>
     </build>
@@ -76,7 +99,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -86,24 +109,17 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
                     </plugin>
                     <!-- auto close and release on nexus -->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
+                        <version>1.6.13</version>
                         <extensions>true</extensions>
                         <configuration>
                             <serverId>sonatype-nexus-snapshots</serverId>
                             <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            <stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
                         </configuration>
                     </plugin>
                 </plugins>

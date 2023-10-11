@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tlcsdm</groupId>
     <artifactId>tlcsdm-asyncTool</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>tlcsdm-asyncTool</name>
     <description>async工具包</description>
     <url>https://github.com/tlcsdm/tlcsdm-asyncTool</url>
